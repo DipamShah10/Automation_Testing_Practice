@@ -1,0 +1,13 @@
+import openpyxl
+
+class ExcelUtils:
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.workbook = openpyxl.load_workbook(file_path)
+
+    def get_data(self, sheet_name):
+        sheet = self.workbook[sheet_name]
+        data = []
+        for row in sheet.iter_rows(values_only=True):
+            data.append(list(row))
+        return data
